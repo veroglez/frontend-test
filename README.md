@@ -68,7 +68,7 @@ Next, we'll explain how we'd like our website.
 
 Given the image hashcode **88380e61d8cc9ba87a107bebe60fc6df** , the URL should be structured in the following way:
 ```
-88 38 0e61d8cc9ba87a107bebe60fc6df
+88   38  0e61d8cc9ba87a107bebe60fc6df
  |   |
  L{chars 0-1}
      |
