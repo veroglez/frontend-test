@@ -15,9 +15,9 @@ The evaluation will take into account the following criteria:
 - Tests
 
 ## How the test works
-Fork this repository and start working on your solution trying to commit as much as possible (every small step you fix ideally), to check the progress of your solution.
+Fork this repository and start working on your solution trying to commit as much as possible (every small step you fix ideally), to check your progress.
 
-You can start when you can but take into account that the test has been designed to be done in less than 4 hours. Once the 4 hours have finished, push your solution and send an email to jobs@minube.com with the subject ``[JOB][Frontend] John Doe`` if you name is John Doe :P
+You can start when you can but take into account that the test has been designed to be done in less than 4 hours. Once the 4 hours have finished, push your solution and send an email with the URL of your repository to jobs@minube.com with the subject ``[JOB][Frontend] John Doe`` if you name is John Doe :P
 
 Projects can be submitted before the 4 hour limit if they are completed. If a project is not completed during the 4 hours available, the candidate should submit all code completed during the test. Once the test is complete, the candidate is free to complete the project and submit it again with no time restrictions.
 
