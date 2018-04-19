@@ -29,6 +29,7 @@ Projects can be submitted before the 4 hour limit if they are completed. If a pr
 - Candidates must use a templating system
 - The solution should be SEO-friendly
 - The candidate should adapt the design so that it’s responsive between 320px and 768px (it’s not necessary to appear correctly in desktop).
+- Take into account that our stack is mainly PHP
 
 ## The test
 At the International Train Lovers Association, we want to create a website that allows us to save the train stations we visit. The association's members haver compiled 1098 train stations around the world, and a software developer friend has created a small interface that allows us to search stations and indicate the ones we've visited with a heart symbol.
