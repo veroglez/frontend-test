@@ -64,7 +64,7 @@ Next, we'll explain how we'd like our website.
 ``https://www.dropbox.com/sh/b84svb4ewk7yufw/AACwE2CO7KYcUB3kAurM8w1Ha?dl=0``
 
 ### Structure of image URLs:
-``https://imgs-akamai.mnstatic.com/{chars 0-1}/{chars 1-2}/{hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C{WIDTH}%3A{HEIGHT}&crop={WIDHT}%3A{HEIGHT}%3B*%2C*
+https://imgs-akamai.mnstatic.com/{chars 0-1}/{chars 1-2}/{hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C{WIDTH}%3A{HEIGHT}&crop={WIDHT}%3A{HEIGHT}%3B*%2C*
 
 Given the image hashcode **88380e61d8cc9ba87a107bebe60fc6df** , the URL should be structured in the following way:
 
