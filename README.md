@@ -67,8 +67,8 @@ Next, we'll explain how we'd like our website.
 `https://imgs-akamai.mnstatic.com/{chars 0-1}/{chars 1-2}/{hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C{WIDTH}%3A{HEIGHT}&crop={WIDHT}%3A{HEIGHT}%3B*%2C*`
 
 Given the image hashcode **88380e61d8cc9ba87a107bebe60fc6df** , the URL should be structured in the following way:
-**88**  **38** 0e61d8cc9ba87a107bebe60fc6df
-``` |   |
+```88 38 0e61d8cc9ba87a107bebe60fc6df
+ |   |
   {chars 0-1}
      |
       {chars 1-2}
