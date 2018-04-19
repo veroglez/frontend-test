@@ -15,7 +15,7 @@ The evaluation will take into account the following criteria:
 - Tests
 
 ## How the test works
-Fork this repository and start working on your solution trying to commit as much as possible (every small step you fix ideally), to check your progress.
+Fork this repository and start working on your solution trying to commit as much as possible (every small step you fix ideally), to check your progress. Please make a first commit changing something on README.md as time stamp.
 
 You can start when you can but take into account that the test has been designed to be done in less than 4 hours. Once the 4 hours have finished, push your solution and send an email with the URL of your repository to jobs@minube.com with the subject ``[JOB][Frontend] John Doe`` if you name is John Doe :P
 
