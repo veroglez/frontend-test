@@ -18,6 +18,4 @@ $( document ).ready(function() {
     eExists && e.module.init()
 
   })
-
-
 })

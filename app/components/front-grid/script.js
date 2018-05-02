@@ -20,7 +20,6 @@ module.exports = {
         }
       })
 
-      // console.log(data);
       const templateGrid = require('./templates/grid.hbs')
       const grid = $('section')
 
