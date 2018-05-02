@@ -1,0 +1,22 @@
+{
+  "name": "frontend-test",
+  "version": "1.0.0",
+  "description": "## Before you begin ### Purpose of the test The purpose of the test is to evaluate a candidate’s technical abilities.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/veroglez/frontend-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/veroglez/frontend-test/issues"
+  },
+  "homepage": "https://github.com/veroglez/frontend-test#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
