@@ -1,11 +1,11 @@
 <h1>Ciudades</h1>
 <div class="grid">
+  {{#each data}}
   <div class="item">
-    {{#each data}}
-
-      <li>{{this.city_name}}</li>
-    {{/each}}
-
+    <div class="image">
+      <img src="{{this.image}}" alt="">
+    </div>
+    <div class="title">{{this.city_name}}</div>
   </div>
-
+  {{/each}}
 </div>
