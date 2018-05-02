@@ -18,6 +18,8 @@ module.exports = {
     this.section.empty()
     this.section.append(this.templateGrid({data:dataByCities}))
 
+    $('.menu').toggleClass('in')
+
     function filterCity(obj) {
       return obj.country_name == city ? true : false
     }
