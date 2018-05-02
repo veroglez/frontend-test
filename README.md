@@ -1,5 +1,6 @@
 # Minube - Frontend Test
 
+
 ## Before you begin
 ### Purpose of the test
 The purpose of the test is to evaluate a candidate’s technical abilities.
