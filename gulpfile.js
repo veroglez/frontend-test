@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 const twig = require('gulp-twig')
 const imagemin = require('gulp-imagemin')
+const stylus = require('gulp-stylus')
 
 
 gulp.task('compile', () => {
@@ -21,5 +22,11 @@ gulp.task('images', () => {
   .pipe(gulp.dest('./dist/images'))
 })
 
+gulp.task('css', function () {
+  return gulp.src('./app/style.styl')
+    .pipe(stylus({compress:true}))
+    .pipe(gulp.dest('./dist/css'))
+});
 
-gulp.task('default', ['compile', 'images'])
+
+gulp.task('default', ['compile', 'images', 'css'])

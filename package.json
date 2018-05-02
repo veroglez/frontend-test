@@ -18,7 +18,8 @@
   "homepage": "https://github.com/veroglez/frontend-test#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-imagemin": "^4.1.0"
+    "gulp-imagemin": "^4.1.0",
+    "gulp-stylus": "^2.7.0"
   },
   "dependencies": {
     "gulp-twig": "^1.2.0"
