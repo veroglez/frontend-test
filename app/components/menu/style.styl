@@ -1,12 +1,14 @@
 nav
   ul
-    display flex
     list-style none
-    justify-content space-between
-    padding 0
 
-    li.open-menu
-      cursor pointer
+    &.top-menu
+      display flex
+      justify-content space-between
+      padding 0
+
+      li.open-menu
+        cursor pointer
 
 .menu
   position fixed
@@ -15,6 +17,8 @@ nav
   height 300px
   background white
   transition all 0.3s
+  width 100%
+  overflow auto
 
   &.in
     bottom 0px
