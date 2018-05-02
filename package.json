@@ -17,8 +17,13 @@
   },
   "homepage": "https://github.com/veroglez/frontend-test#readme",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.6.1",
     "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-browserify": "^0.5.1",
     "gulp-imagemin": "^4.1.0",
+    "gulp-js-minify": "0.0.3",
     "gulp-stylus": "^2.7.0"
   },
   "dependencies": {

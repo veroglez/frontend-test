@@ -2,10 +2,12 @@ const gulp = require('gulp')
 const twig = require('gulp-twig')
 const imagemin = require('gulp-imagemin')
 const stylus = require('gulp-stylus')
+const minifyjs = require('gulp-js-minify')
+const babel = require('gulp-babel')
+const browserify = require('gulp-browserify')
 
 
 gulp.task('compile', () => {
-  'use strict'
   return gulp.src('./app/templates/index.twig')
     .pipe(twig({
       data: {
@@ -28,7 +30,16 @@ gulp.task('css', function () {
     .pipe(gulp.dest('./dist/css'))
 })
 
+gulp.task('script', () =>
+  gulp.src('app/main.js')
+    .pipe(browserify({
+      insertGlobals : true,
+      debug : !gulp.env.production
+    }))
+    .pipe(babel({presets: ['env']}))
+    .pipe(minifyjs())
+    .pipe(gulp.dest('./dist/js'))
+)
 
-gulp.task('default', ['compile', 'images', 'css'])
-gulp.watch('app/components/**/*.styl', ['css'])
-gulp.watch('app/templates/*.twig', ['compile'])
+gulp.task('default', ['compile', 'images', 'css', 'script'])
+gulp.watch('app/**', ['css', 'compile', 'script'])
