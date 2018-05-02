@@ -6,13 +6,9 @@ const minifyjs = require('gulp-js-minify')
 const babel = require('gulp-babel')
 const handlebars = require('gulp-handlebars')
 const browserify = require('browserify')
-const buffer      = require('vinyl-buffer')
-const gutil       = require('gulp-util')
-const source      = require('vinyl-source-stream')
-const sourcemaps  = require('gulp-sourcemaps')
-const uglify      = require('gulp-uglify')
+const buffer = require('vinyl-buffer')
+const source = require('vinyl-source-stream')
 const hbsfy = require('hbsfy');
-
 
 gulp.task('compile', () => {
   return gulp.src('./app/templates/index.twig')
@@ -37,12 +33,11 @@ gulp.task('css', function () {
     .pipe(gulp.dest('./dist/css'))
 })
 
-gulp.task('bundle', function () {
+gulp.task('script', function () {
   var b = browserify({
     entries: 'app/main.js',
     debug: true
-  });
-
+  })
   return b.transform(hbsfy).bundle()
     .pipe(source('main.js'))
     .pipe(buffer())
@@ -51,5 +46,5 @@ gulp.task('bundle', function () {
     .pipe(gulp.dest('./dist/js/'))
 })
 
-gulp.task('default', ['compile', 'images', 'css', 'bundle'])
-gulp.watch('app/**', ['css', 'compile', 'bundle'])
+gulp.task('default', ['compile', 'images', 'css', 'script'])
+gulp.watch('app/**', ['css', 'compile', 'script'])
