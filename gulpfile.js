@@ -4,7 +4,14 @@ const imagemin = require('gulp-imagemin')
 const stylus = require('gulp-stylus')
 const minifyjs = require('gulp-js-minify')
 const babel = require('gulp-babel')
-const browserify = require('gulp-browserify')
+const handlebars = require('gulp-handlebars')
+const browserify = require('browserify')
+const buffer      = require('vinyl-buffer')
+const gutil       = require('gulp-util')
+const source      = require('vinyl-source-stream')
+const sourcemaps  = require('gulp-sourcemaps')
+const uglify      = require('gulp-uglify')
+const hbsfy = require('hbsfy');
 
 
 gulp.task('compile', () => {
@@ -30,16 +37,19 @@ gulp.task('css', function () {
     .pipe(gulp.dest('./dist/css'))
 })
 
-gulp.task('script', () =>
-  gulp.src('app/main.js')
-    .pipe(browserify({
-      insertGlobals : true,
-      debug : !gulp.env.production
-    }))
+gulp.task('bundle', function () {
+  var b = browserify({
+    entries: 'app/main.js',
+    debug: true
+  });
+
+  return b.transform(hbsfy).bundle()
+    .pipe(source('main.js'))
+    .pipe(buffer())
     .pipe(babel({presets: ['env']}))
     .pipe(minifyjs())
-    .pipe(gulp.dest('./dist/js'))
-)
+    .pipe(gulp.dest('./dist/js/'))
+})
 
-gulp.task('default', ['compile', 'images', 'css', 'script'])
-gulp.watch('app/**', ['css', 'compile', 'script'])
+gulp.task('default', ['compile', 'images', 'css', 'bundle'])
+gulp.watch('app/**', ['css', 'compile', 'bundle'])
