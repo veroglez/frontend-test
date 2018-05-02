@@ -26,7 +26,9 @@ gulp.task('css', function () {
   return gulp.src('./app/style.styl')
     .pipe(stylus({compress:true}))
     .pipe(gulp.dest('./dist/css'))
-});
+})
 
 
 gulp.task('default', ['compile', 'images', 'css'])
+gulp.watch('app/components/**/*.styl', ['css'])
+gulp.watch('app/templates/*.twig', ['compile'])
