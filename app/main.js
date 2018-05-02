@@ -4,6 +4,10 @@ $( document ).ready(function() {
     {
       id: 'nav',
       module: require('./components/front-grid/script.js')
+    },
+    {
+      id: 'nav',
+      module: require('./components/menu/script.js')
     }
   ]
 
