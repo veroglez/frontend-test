@@ -20,9 +20,12 @@ module.exports = {
         }
       })
 
-      var template = require('./template.hbs')
+      // console.log(data);
+      const templateGrid = require('./templates/grid.hbs')
       const grid = $('section')
-      grid.append(template({data:data}))
+
+      grid.append(templateGrid({data:data}))
+      const menu = $('.sub-menu')
     })
   }
 }
