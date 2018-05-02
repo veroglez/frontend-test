@@ -1,5 +1,7 @@
 module.exports = {
   countries: [],
+  cities: [],
+  citiesNotRepeated: [],
   data:{},
   templateGrid: require('./templates/grid.hbs'),
   templateMenu: require('./templates/menu.hbs'),
@@ -13,7 +15,7 @@ module.exports = {
   filterCitiesByCountry: function(e){
     const city = $(e.target).text()
 
-    const dataByCities = this.data.filter(filterCity)
+    const dataByCities = this.citiesNotRepeated.filter(filterCity)
 
     this.section.empty()
     this.section.append(this.templateGrid({data:dataByCities}))
@@ -38,6 +40,11 @@ module.exports = {
         if(!this.countries.includes(e.country_name))
           this.countries.push(e.country_name)
 
+        if(!this.cities.includes(e.city_name)){
+          this.cities.push(e.city_name)
+          this.citiesNotRepeated.push(e)
+        }
+
         if(hashcode!=null){
           const chars01 = hashcode.slice(0, 2)
           const chars12 = hashcode.slice(2, 4)
@@ -45,7 +52,7 @@ module.exports = {
         }
       })
 
-      this.section.append(this.templateGrid({data:this.data}))
+      this.section.append(this.templateGrid({data:this.citiesNotRepeated}))
       this.navMenu.append(this.templateMenu({countries:this.countries}))
 
       $('.menu li').on('click', (e) => { this.filterCitiesByCountry(e) })
