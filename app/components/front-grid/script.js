@@ -41,7 +41,7 @@ module.exports = {
         if(hashcode!=null){
           const chars01 = hashcode.slice(0, 2)
           const chars12 = hashcode.slice(2, 4)
-          e.image = `https://imgs-akamai.mnstatic.com/${chars01}/${chars12}/${hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C90%3A183&crop=90%3A183%3B*%2C*`
+          e.image = `https://imgs-akamai.mnstatic.com/${chars01}/${chars12}/${hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C120%3A183&crop=120%3A183%3B*%2C*`
         }
       })
 

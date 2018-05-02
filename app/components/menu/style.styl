@@ -1,24 +1,28 @@
-nav
-  ul
-    list-style none
+header
+  margin 24px 8px 0
 
-    &.top-menu
-      display flex
-      justify-content space-between
-      padding 0
+  nav
+    ul
+      list-style none
 
-      li.open-menu
-        cursor pointer
+      &.top-menu
+        display flex
+        justify-content space-between
+        padding 0
 
-.menu
-  position fixed
-  bottom -300px
-  left 0
-  height 300px
-  background white
-  transition all 0.3s
-  width 100%
-  overflow auto
+        li.open-menu
+          cursor pointer
 
-  &.in
-    bottom 0px
+  .menu
+    position fixed
+    bottom -300px
+    left 0
+    height 300px
+    background white
+    transition all 0.3s
+    width 100%
+    overflow auto
+    z-index 2
+
+    &.in
+      bottom 0px
