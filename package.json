@@ -22,6 +22,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-browserify": "^0.5.1",
+    "gulp-handlebars": "^5.0.2",
     "gulp-imagemin": "^4.1.0",
     "gulp-js-minify": "0.0.3",
     "gulp-stylus": "^2.7.0"
