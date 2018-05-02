@@ -1,1 +1,1 @@
-nav{background:#00f}
+nav ul{display:flex;list-style:none;justify-content:space-between;padding:0;}nav ul li.open-menu{cursor:pointer}.menu{position:fixed;bottom:-300px;left:0;height:300px;background:#fff;transition:all .3s;}.menu.in{bottom:0}
