@@ -3,11 +3,11 @@ module.exports = {
   cities: [],
   citiesNotRepeated: [],
   data:{},
-  templateGrid: require('./templates/grid.hbs'),
-  templateMenu: require('./templates/menu.hbs'),
   section: $('section'),
   navMenu: $('header nav'),
   map: require('../map/script.js'),
+  templateGrid: require('./templates/grid.hbs'),
+  templateMenu: require('../menu/templates/countries.hbs'),
 
   init: function(){
     this.requestApi()
@@ -22,6 +22,21 @@ module.exports = {
   emptyAndAddNewTemplate: function(element, template, data){
     element.empty()
     element.append(template({data:data}))
+  },
+
+  pushIntoArray: function(e, arr, key, arrNotRepeated){
+    !arr.includes(e[`${key}`]) && arr.push(e[`${key}`])
+    arrNotRepeated && arrNotRepeated.push(e)
+  },
+
+  createUrlImage: function(e){
+    const hashcode = e.picture_hashcode
+
+    if(hashcode!=null){
+      const chars01 = hashcode.slice(0, 2)
+      const chars12 = hashcode.slice(2, 4)
+      e.image = `https://imgs-akamai.mnstatic.com/${chars01}/${chars12}/${hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C120%3A183&crop=120%3A183%3B*%2C*`
+    }
   },
 
   filterCitiesByCountry: function(e){
@@ -41,16 +56,6 @@ module.exports = {
     })
   },
 
-  createUrlImage: function(e){
-    const hashcode = e.picture_hashcode
-
-    if(hashcode!=null){
-      const chars01 = hashcode.slice(0, 2)
-      const chars12 = hashcode.slice(2, 4)
-      e.image = `https://imgs-akamai.mnstatic.com/${chars01}/${chars12}/${hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C120%3A183&crop=120%3A183%3B*%2C*`
-    }
-  },
-
   requestApi: function(){
     $.ajax({
       method: 'GET',
@@ -59,15 +64,8 @@ module.exports = {
       this.data = JSON.parse(res)
 
       this.data.forEach( e => {
-
-        if(!this.countries.includes(e.country_name))
-          this.countries.push(e.country_name)
-
-        if(!this.cities.includes(e.city_name)){
-          this.cities.push(e.city_name)
-          this.citiesNotRepeated.push(e)
-        }
-
+        this.pushIntoArray(e, this.countries, 'country_name')
+        this.pushIntoArray(e, this.cities, 'city_name', this.citiesNotRepeated)
         this.createUrlImage(e)
       })
 
