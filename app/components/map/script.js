@@ -36,10 +36,6 @@ module.exports = {
         });
       }
 
-      $('#map').on('click', (e) => {
-        console.log(e.target );
-      })
-
     }).catch(function (error) {
       console.error(error)
     })

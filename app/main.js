@@ -3,7 +3,7 @@ $( document ).ready(function() {
   const page = [
     {
       id: 'nav',
-      module: require('./components/front-grid/script.js')
+      module: require('./components/front_grid/script.js')
     },
     {
       id: 'nav',
