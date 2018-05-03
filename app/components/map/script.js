@@ -1,7 +1,8 @@
 const loadGoogleMapsApi = require('load-google-maps-api')
+const env = require('../../env.js')
 
 module.exports = {
-  apiKey: 'AIzaSyCkCoWeDJL6lx26hHFd9-9Rs44KgnB1CYA',
+  apiKey: env.apiKey,
   section: $('section'),
   templateMap: require('./template.hbs'),
 
@@ -25,7 +26,6 @@ module.exports = {
           radius: 2
         })
       }
-
 
     }).catch(function (error) {
       console.error(error)
