@@ -26,28 +26,29 @@ module.exports = {
 
   filterCitiesByCountry: function(e){
     const country = $(e.target).text()
-
     const dataByCountries = this.filterObject(this.citiesNotRepeated, 'country_name', country)
 
     this.emptyAndAddNewTemplate(this.section, this.templateGrid, dataByCountries)
 
     $('.menu').toggleClass('in')
 
-
     this.items = $('.item')
     this.items.on('click', (e) => {
-      const item = $(e.currentTarget)
-      const city = item.find('.title').text()
+      const city = $(e.currentTarget).find('.title').text()
+      const dataByCities = this.filterObject(this.data, 'city_name', city)
 
-      const dataByCities = this.data.filter( e => {
-        return e.city_name == city ? e : false
-      })
       this.map.init(dataByCities)
     })
   },
 
-  filterCity: function(city,obj) {
-    return obj.city_name == city ? true : false
+  createUrlImage: function(e){
+    const hashcode = e.picture_hashcode
+
+    if(hashcode!=null){
+      const chars01 = hashcode.slice(0, 2)
+      const chars12 = hashcode.slice(2, 4)
+      e.image = `https://imgs-akamai.mnstatic.com/${chars01}/${chars12}/${hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C120%3A183&crop=120%3A183%3B*%2C*`
+    }
   },
 
   requestApi: function(){
@@ -58,7 +59,6 @@ module.exports = {
       this.data = JSON.parse(res)
 
       this.data.forEach( e => {
-        const hashcode = e.picture_hashcode
 
         if(!this.countries.includes(e.country_name))
           this.countries.push(e.country_name)
@@ -68,11 +68,7 @@ module.exports = {
           this.citiesNotRepeated.push(e)
         }
 
-        if(hashcode!=null){
-          const chars01 = hashcode.slice(0, 2)
-          const chars12 = hashcode.slice(2, 4)
-          e.image = `https://imgs-akamai.mnstatic.com/${chars01}/${chars12}/${hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C120%3A183&crop=120%3A183%3B*%2C*`
-        }
+        this.createUrlImage(e)
       })
 
       this.section.append(this.templateGrid({data:this.citiesNotRepeated}))
