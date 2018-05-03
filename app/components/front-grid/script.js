@@ -13,18 +13,30 @@ module.exports = {
   },
 
   filterCitiesByCountry: function(e){
-    const city = $(e.target).text()
+    const country = $(e.target).text()
 
-    const dataByCities = this.citiesNotRepeated.filter(filterCity)
+    const dataByCountries = this.citiesNotRepeated.filter( e => {
+      return e.country_name == country ? e : false
+    })
 
     this.section.empty()
-    this.section.append(this.templateGrid({data:dataByCities}))
+    this.section.append(this.templateGrid({data:dataByCountries}))
 
     $('.menu').toggleClass('in')
 
-    function filterCity(obj) {
-      return obj.country_name == city ? true : false
-    }
+    this.items = $('.item')
+    this.items.on('click', (e) => {
+      const item = $(e.currentTarget)
+      const city = item.find('.title').text()
+
+      const dataByCities = this.data.filter( e => {
+        return e.city_name == city ? e : false
+      })
+    })
+  },
+
+  filterCity: function(city,obj) {
+    return obj.city_name == city ? true : false
   },
 
   requestApi: function(){
@@ -56,6 +68,7 @@ module.exports = {
       this.navMenu.append(this.templateMenu({countries:this.countries}))
 
       $('.menu li').on('click', (e) => { this.filterCitiesByCountry(e) })
+
     })
   }
 }
