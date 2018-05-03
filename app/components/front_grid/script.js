@@ -6,6 +6,7 @@ module.exports = {
   section: $('section'),
   navMenu: $('header nav'),
   map: require('../map/script.js'),
+  templates: require('../templates/script.js'),
   templateGrid: require('./templates/grid.hbs'),
   templateMenu: require('../menu/templates/countries.hbs'),
 
@@ -17,11 +18,6 @@ module.exports = {
     return element.filter( e => {
       return e[`${key}`] == value ? e : false
     })
-  },
-
-  emptyAndAddNewTemplate: function(element, template, data){
-    element.empty()
-    element.append(template({data:data}))
   },
 
   pushIntoArray: function(e, arr, key, arrNotRepeated){
@@ -43,7 +39,7 @@ module.exports = {
     const country = $(e.target).text()
     const dataByCountries = this.filterObject(this.citiesNotRepeated, 'country_name', country)
 
-    this.emptyAndAddNewTemplate(this.section, this.templateGrid, dataByCountries)
+    this.templates.emptyAndAddNewTemplate(this.section, this.templateGrid, dataByCountries)
 
     $('.menu').toggleClass('in')
 
