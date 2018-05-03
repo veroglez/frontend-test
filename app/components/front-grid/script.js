@@ -13,15 +13,23 @@ module.exports = {
     this.requestApi()
   },
 
+  filterObject: function(element, key, value){
+    return element.filter( e => {
+      return e[`${key}`] == value ? e : false
+    })
+  },
+
+  emptyAndAddNewTemplate: function(element, template, data){
+    element.empty()
+    element.append(template({data:data}))
+  },
+
   filterCitiesByCountry: function(e){
     const country = $(e.target).text()
 
-    const dataByCountries = this.citiesNotRepeated.filter( e => {
-      return e.country_name == country ? e : false
-    })
+    const dataByCountries = this.filterObject(this.citiesNotRepeated, 'country_name', country)
 
-    this.section.empty()
-    this.section.append(this.templateGrid({data:dataByCountries}))
+    this.emptyAndAddNewTemplate(this.section, this.templateGrid, dataByCountries)
 
     $('.menu').toggleClass('in')
 

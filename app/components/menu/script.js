@@ -1,10 +1,10 @@
 module.exports = {
-  
+
   init: function(){
-    this.showMenu()
+    this.openCloseMenu()
   },
 
-  showMenu: function(){
+  openCloseMenu: function(){
     $('.open-menu').on('click', () => {
       $('.menu').toggleClass('in')
     })
