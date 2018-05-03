@@ -7,6 +7,7 @@ module.exports = {
   templateMenu: require('./templates/menu.hbs'),
   section: $('section'),
   navMenu: $('header nav'),
+  map: require('../map/script.js'),
 
   init: function(){
     this.requestApi()
@@ -24,6 +25,7 @@ module.exports = {
 
     $('.menu').toggleClass('in')
 
+
     this.items = $('.item')
     this.items.on('click', (e) => {
       const item = $(e.currentTarget)
@@ -32,6 +34,7 @@ module.exports = {
       const dataByCities = this.data.filter( e => {
         return e.city_name == city ? e : false
       })
+      this.map.init(dataByCities)
     })
   },
 
