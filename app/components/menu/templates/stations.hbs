@@ -1,6 +1,13 @@
 <h3>Estaciones</h3>
 <ul class="stations">
   {{#each data}}
-  <li data-id="{{this.id}}">{{this.station_name}}</li>
+  <li data-id="{{this.id}}">
+    <img src="{{this.image}}" alt="">
+    <div class="title">
+      <p>{{this.station_name}}</p>
+      <span>{{this.country_name}}</span>
+    </div>
+    <img class="reaction" src="./images/like.svg" alt="">
+  </li>
   {{/each}}
 </ul>
