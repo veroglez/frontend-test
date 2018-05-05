@@ -8,7 +8,9 @@ const handlebars = require('gulp-handlebars')
 const browserify = require('browserify')
 const buffer = require('vinyl-buffer')
 const source = require('vinyl-source-stream')
-const hbsfy = require('hbsfy');
+const hbsfy = require('hbsfy')
+const iconfont   = require('gulp-iconfont')
+const iconfontCss = require('gulp-iconfont-css')
 
 gulp.task('compile', () => {
   return gulp.src('./app/templates/index.twig')
@@ -46,5 +48,23 @@ gulp.task('script', function () {
     .pipe(gulp.dest('./dist/js/'))
 })
 
-gulp.task('default', ['compile', 'images', 'css', 'script'])
+gulp.task('iconfont', function () {
+  return gulp.src('./app/images/*.svg')
+    .pipe(iconfontCss({
+      fontName: 'iconfont',
+      targetPath: '../style/iconfont.styl',
+      fontPath: '../../app/fonts/',
+      cssClass:'icons'
+    }))
+    .pipe(iconfont({
+      fontName: 'iconfont',
+      formats: ['ttf', 'eot', 'woff', 'woff2'],
+      prependUnicode: false,
+      normalize: true,
+      fontHeight: 1001,
+      centerHorizontally: true
+    })).pipe(gulp.dest('./app/fonts'))
+})
+
+gulp.task('default', ['compile', 'images', 'css', 'script','iconfont'])
 gulp.watch('app/**', ['css', 'compile', 'script'])
