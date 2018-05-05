@@ -1,11 +1,11 @@
-<h3>Estaciones</h3>
+<h2>Estaciones</h2>
 <ul class="stations">
   {{#each data}}
   <li data-id="{{this.id}}">
     <img src="{{this.image}}" alt="">
     <div class="title">
       <p>{{this.station_name}}</p>
-      <span>{{this.country_name}}</span>
+      <p class="city">{{this.city_name}}</p>
     </div>
     <img class="reaction" src="./images/like.svg" alt="">
   </li>
