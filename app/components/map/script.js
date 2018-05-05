@@ -3,19 +3,23 @@ const env = require('../../env.js')
 
 module.exports = {
   apiKey: env.apiKey,
+  stationsChecked: [],
   templateMap: require('./template.hbs'),
   templateMenu: require('../menu/templates/stations.hbs'),
   templates: require('../templates/script.js'),
 
   init: function(data){
+
     this.templates.emptyAndAddNewTemplate($('section'), this.templateMap)
     this.templates.emptyAndAddNewTemplate($('.menu'), this.templateMenu, data)
+
+    $('.stations li').on('click', e => this.storeDataToLocalStorage(e))
 
     loadGoogleMapsApi({key: this.apiKey})
       .then( googleMaps => {
         const map = this.createGoogleMap(googleMaps, data)
 
-        for (var e in data)
+        for (let e in data)
           this.drawMarkersMap(data, e, map)
 
       })
@@ -41,5 +45,20 @@ module.exports = {
         strokeWeight: 0
       },
     })
-  }
+  },
+
+  storeDataToLocalStorage: function(e){
+    const item = $(e.target)
+    const stationId = item.attr('data-id')
+    let stationsStored = JSON.parse(localStorage.getItem('stationsId'))
+
+    if( stationsStored == null )
+      stationsStored = []
+
+    const stationIdExists = stationsStored.includes(stationId)
+    if(!stationIdExists)
+      stationsStored.push(stationId)
+
+    localStorage.setItem('stationsId', JSON.stringify(stationsStored))
+  },
 }
