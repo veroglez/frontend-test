@@ -9,6 +9,7 @@ module.exports = {
   templates: require('../templates/script.js'),
 
   init: function(data){
+    this.data = data
 
     this.templates.emptyAndAddNewTemplate($('section'), this.templateMap)
     this.templates.emptyAndAddNewTemplate($('.menu'), this.templateMenu, data)
@@ -17,11 +18,8 @@ module.exports = {
 
     loadGoogleMapsApi({key: this.apiKey})
       .then( googleMaps => {
-        const map = this.createGoogleMap(googleMaps, data)
-
-        for (let e in data)
-          this.drawMarkersMap(data, e, map)
-
+        this.map = this.createGoogleMap(googleMaps, data)
+        this.drawMarkersMap(data, this.map)
       })
       .catch( err => console.error(err))
   },
@@ -29,36 +27,69 @@ module.exports = {
   createGoogleMap: function(googleMaps, data){
     return new googleMaps.Map(document.getElementById('map'), {
       center: {lat: Number(data[0].latitude), lng: Number(data[0].longitude)},
-      zoom: 12
+      zoom: 12,
+      disableDefaultUI: true
     })
   },
 
-  drawMarkersMap: function(data, e, map){
-    new google.maps.Marker({
-      position: {lat: Number(data[e].latitude), lng: Number(data[e].longitude)},
-      map: map,
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 8.5,
-        fillColor: "#F00",
-        fillOpacity: 1,
-        strokeWeight: 0
-      },
+  drawMarkersMap: function(data, map){
+    let stationsStored = JSON.parse(localStorage.getItem('stationsId'))
+    const list = $('.menu li')
+
+    list.each( (i, e) => {
+      e = $(e)
+      let stationId = e.attr('data-id')
+      
+      if(stationsStored && stationsStored.includes(stationId))
+        e.addClass('checked')
     })
+
+
+    for (let e in data){
+      let markerColor = '#fff'
+
+      if(stationsStored && stationsStored.includes(data[e].id))
+        markerColor = '#d55b4e'
+
+
+      new google.maps.Marker({
+        position: {lat: Number(data[e].latitude), lng: Number(data[e].longitude)},
+        map: map,
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 8.5,
+          fillColor: markerColor,
+          fillOpacity: 1,
+          strokeWeight: 1
+        },
+      })
+    }
   },
 
   storeDataToLocalStorage: function(e){
-    const item = $(e.target)
+    console.log('click');
+    const item = $(e.currentTarget)
     const stationId = item.attr('data-id')
     let stationsStored = JSON.parse(localStorage.getItem('stationsId'))
+
+    item.toggleClass('checked')
 
     if( stationsStored == null )
       stationsStored = []
 
     const stationIdExists = stationsStored.includes(stationId)
-    if(!stationIdExists)
+    if(!stationIdExists){
       stationsStored.push(stationId)
 
+    }else{
+      stationsStored = stationsStored.filter(e => e != stationId)
+    }
+
     localStorage.setItem('stationsId', JSON.stringify(stationsStored))
+
+    this.drawMarkersMap(this.data, this.map)
   },
+
+
+
 }

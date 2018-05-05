@@ -2,6 +2,7 @@ module.exports = {
   countries: [],
   cities: [],
   citiesNotRepeated: [],
+  countriesNotRepeated: [],
   data:{},
   section: $('section'),
   navMenu: $('header nav'),
@@ -30,16 +31,17 @@ module.exports = {
 
   createUrlImage: function(e){
     const hashcode = e.picture_hashcode
+    const imgSize = [130, 180]
 
     if(hashcode!=null){
       const chars01 = hashcode.slice(0, 2)
       const chars12 = hashcode.slice(2, 4)
-      e.image = `https://imgs-akamai.mnstatic.com/${chars01}/${chars12}/${hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C120%3A183&crop=120%3A183%3B*%2C*`
+      e.image = `https://imgs-akamai.mnstatic.com/${chars01}/${chars12}/${hashcode}.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C${imgSize[0]}%3A${imgSize[1]}&crop=${imgSize[0]}%3A${imgSize[1]}%3B*%2C*`
     }
   },
 
   filterCitiesByCountry: function(e){
-    const country = $(e.target).text()
+    const country = $(e.target).find('p').text()
     const dataByCountries = this.filterObject(this.citiesNotRepeated, 'country_name', country)
 
     this.templates.emptyAndAddNewTemplate(this.section, this.templateGrid, dataByCountries)
@@ -61,16 +63,15 @@ module.exports = {
       url: 'https://gist.githubusercontent.com/inakivb/943ed6b3a8bcc667c1e1147b7591e32f/raw/355b2d67aaea30fd322c7d1e1a8660480609d67a/stations.json',
     }).then(res => {
       this.data = JSON.parse(res)
-      console.log(this.data);
 
       this.data.forEach( e => {
-        this.pushIntoArray(e, this.countries, 'country_name')
+        this.pushIntoArray(e, this.countries, 'country_name', this.countriesNotRepeated)
         this.pushIntoArray(e, this.cities, 'city_name', this.citiesNotRepeated)
         this.createUrlImage(e)
       })
 
       this.section.append(this.templateGrid({data:this.citiesNotRepeated}))
-      this.navMenu.append(this.templateMenu({data:this.countries}))
+      this.navMenu.append(this.templateMenu({data:this.countriesNotRepeated}))
 
       $('.menu li').on('click', (e) => { this.filterCitiesByCountry(e) })
       $('.item').on('click', (e) => { this.openMapForCity(e) })
@@ -79,7 +80,7 @@ module.exports = {
   },
 
   createSession: function(){
-    const timeMin = 1
+    const timeMin = 5
     const sessionExists = localStorage.getItem('stationsId') != null
     const sessionHasExpired = new Date().getTime() >= localStorage.getItem('timestamp')
 
