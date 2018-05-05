@@ -11,6 +11,7 @@ module.exports = {
   templateMenu: require('../menu/templates/countries.hbs'),
 
   init: function(){
+    this.createSession()
     this.requestApi()
   },
 
@@ -69,7 +70,28 @@ module.exports = {
       this.navMenu.append(this.templateMenu({countries:this.countries}))
 
       $('.menu li').on('click', (e) => { this.filterCitiesByCountry(e) })
+      //Reefac
+      $('.item').on('click', (e) => {
+        const city = $(e.currentTarget).find('.title').text()
+        const dataByCities = this.filterObject(this.data, 'city_name', city)
+
+        this.map.init(dataByCities)
+      })
 
     })
-  }
+  },
+
+  createSession: function(){
+    const timeMin = 1
+    const sessionExists = localStorage.getItem('stationsId') != null
+    const sessionHasExpired = new Date().getTime() >= localStorage.getItem('timestamp')
+
+    if(sessionExists){
+      if(sessionHasExpired)
+        localStorage.removeItem('stationsId')
+      else
+        return false
+    }
+    localStorage.setItem('timestamp', new Date().getTime() + timeMin*60*1000)
+  },
 }
