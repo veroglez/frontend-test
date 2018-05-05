@@ -1,9 +1,17 @@
+$grey-border = #e5e5e5
+
 header
-  margin 24px 8px 0
+  width 100%
+  position fixed
+  top 0
+  left 0
+  z-index 2
+  padding 16px
 
   nav
     ul
       list-style none
+      padding 0
 
       &.top-menu
         display flex
@@ -23,6 +31,24 @@ header
     width 100%
     overflow auto
     z-index 2
+    padding 0
 
     &.in
       bottom 0px
+
+    ul
+      padding 0
+
+      li
+        display flex
+        border-bottom 1px solid $grey-border
+        padding 10px 16px
+        font-size 13px
+
+        img
+          width 50px
+          height 50px
+
+          &.reaction
+            width 20px
+            height 20px
