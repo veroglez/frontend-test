@@ -22,8 +22,10 @@ module.exports = {
   },
 
   pushIntoArray: function(e, arr, key, arrNotRepeated){
-    !arr.includes(e[`${key}`]) && arr.push(e[`${key}`])
-    arrNotRepeated && arrNotRepeated.push(e)
+    if(!arr.includes(e[`${key}`])){
+      arr.push(e[`${key}`])
+      arrNotRepeated != undefined && arrNotRepeated.push(e)
+    }
   },
 
   createUrlImage: function(e){
@@ -43,14 +45,14 @@ module.exports = {
     this.templates.emptyAndAddNewTemplate(this.section, this.templateGrid, dataByCountries)
 
     $('.menu').toggleClass('in')
+    $('.item').on('click', (e) => { this.openMapForCity(e) })
+  },
 
-    this.items = $('.item')
-    this.items.on('click', (e) => {
-      const city = $(e.currentTarget).find('.title').text()
-      const dataByCities = this.filterObject(this.data, 'city_name', city)
+  openMapForCity(e){
+    const city = $(e.currentTarget).find('.title').text()
+    const dataByCities = this.filterObject(this.data, 'city_name', city)
 
-      this.map.init(dataByCities)
-    })
+    this.map.init(dataByCities)
   },
 
   requestApi: function(){
@@ -59,6 +61,7 @@ module.exports = {
       url: 'https://gist.githubusercontent.com/inakivb/943ed6b3a8bcc667c1e1147b7591e32f/raw/355b2d67aaea30fd322c7d1e1a8660480609d67a/stations.json',
     }).then(res => {
       this.data = JSON.parse(res)
+      console.log(this.data);
 
       this.data.forEach( e => {
         this.pushIntoArray(e, this.countries, 'country_name')
@@ -67,16 +70,10 @@ module.exports = {
       })
 
       this.section.append(this.templateGrid({data:this.citiesNotRepeated}))
-      this.navMenu.append(this.templateMenu({countries:this.countries}))
+      this.navMenu.append(this.templateMenu({data:this.countries}))
 
       $('.menu li').on('click', (e) => { this.filterCitiesByCountry(e) })
-      //Reefac
-      $('.item').on('click', (e) => {
-        const city = $(e.currentTarget).find('.title').text()
-        const dataByCities = this.filterObject(this.data, 'city_name', city)
-
-        this.map.init(dataByCities)
-      })
+      $('.item').on('click', (e) => { this.openMapForCity(e) })
 
     })
   },
