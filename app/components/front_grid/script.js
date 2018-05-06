@@ -47,7 +47,7 @@ class FrontGrid {
     const country = $(e.currentTarget).find('p').text()
     const dataByCountries = this.filterObject(this.citiesNotRepeated, 'country_name', country)
 
-    this.templates.emptyAndAddNewTemplate( $('section'), this.templates.templateGrid, dataByCountries)
+    this.templates.emptyAndAddNewTemplate( $('section'), this.templates.grid, dataByCountries)
     this.menu.openCloseMenu()
 
     $('.item').on('click', (e) => { this.openMapForCity(e) })
@@ -75,8 +75,8 @@ class FrontGrid {
         this.createUrlImage(e)
       })
 
-      this.templates.addTemplate($('section'), this.templates.templateGrid, this.citiesNotRepeated)
-      this.templates.addTemplate($('header nav'), this.templates.templateMenu, this.citiesNotRepeated)
+      this.templates.addTemplate($('section'), this.templates.grid, this.citiesNotRepeated)
+      this.templates.addTemplate($('header nav'), this.templates.countriesMenu, this.citiesNotRepeated)
 
       $('.menu li').on('click', (e) => { this.handlerFilterCitiesByCountry(e) })
       $('.item').on('click', (e) => { this.openMapForCity(e) })

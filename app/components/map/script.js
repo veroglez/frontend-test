@@ -7,16 +7,14 @@ class Maps{
   constructor(){
     this.apiKey = env.apiKey
     this.stationsChecked = []
-    this.templateMap = require('./template.hbs')
-    this.templateMenu = require('../menu/templates/stations.hbs')
     this.templates = new Templates()
   }
 
   init(data){
     this.data = data
 
-    this.templates.emptyAndAddNewTemplate($('section'), this.templateMap)
-    this.templates.emptyAndAddNewTemplate($('.menu'), this.templateMenu, data)
+    this.templates.emptyAndAddNewTemplate($('section'), this.templates.map)
+    this.templates.emptyAndAddNewTemplate($('.menu'), this.templates.stationsMenu, data)
 
     $('.stations li').on('click', e => this.storeDataToLocalStorage(e))
 
@@ -73,15 +71,13 @@ class Maps{
       stationsStored = []
 
     const stationIdExists = stationsStored.includes(stationId)
-    if(!stationIdExists){
+    if(!stationIdExists)
       stationsStored.push(stationId)
-
-    }else{
+    else
       stationsStored = stationsStored.filter(e => e != stationId)
-    }
 
     localStorage.setItem('stationsId', JSON.stringify(stationsStored))
-
+    
     this.drawMarkersMap(this.data, this.map)
   }
 

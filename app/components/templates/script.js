@@ -1,8 +1,10 @@
 class Templates {
 
   constructor(){
-    this.templateGrid = require('../front_grid/templates/grid.hbs')
-    this.templateMenu = require('../menu/templates/countries.hbs')
+    this.grid = require('../front_grid/templates/grid.hbs')
+    this.countriesMenu = require('../menu/templates/countries.hbs')
+    this.stationsMenu = require('../menu/templates/stations.hbs')
+    this.map = require('../map/templates/template.hbs')
   }
 
   emptyAndAddNewTemplate(element, template, data){
