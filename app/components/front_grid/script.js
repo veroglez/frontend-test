@@ -1,3 +1,5 @@
+let Maps = require('../map/script.js')
+
 class FrontGrid {
 
   constructor(){
@@ -7,7 +9,7 @@ class FrontGrid {
   }
 
   init(){
-    this.map = require('../map/script.js')
+    this.map = new Maps()
     this.templates = require('../templates/script.js')
     this.templateGrid = require('./templates/grid.hbs')
     this.templateMenu = require('../menu/templates/countries.hbs')

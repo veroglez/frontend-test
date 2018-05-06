@@ -1,5 +1,5 @@
-var FrontGrid = require('./components/front_grid/script.js')
-var Menu = require('./components/menu/script.js')
+const FrontGrid = require('./components/front_grid/script.js')
+const Menu = require('./components/menu/script.js')
 
 $( document ).ready(function() {
 
