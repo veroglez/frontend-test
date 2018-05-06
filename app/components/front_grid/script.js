@@ -76,7 +76,7 @@ class FrontGrid {
       })
 
       this.templates.addTemplate($('section'), this.templates.grid, this.citiesNotRepeated)
-      this.templates.addTemplate($('header nav'), this.templates.countriesMenu, this.citiesNotRepeated)
+      this.templates.addTemplate($('header nav'), this.templates.countriesMenu, this.countriesNotRepeated)
 
       $('.menu li').on('click', (e) => { this.handlerFilterCitiesByCountry(e) })
       $('.item').on('click', (e) => { this.openMapForCity(e) })

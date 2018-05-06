@@ -12,16 +12,18 @@ class Maps{
 
   init(data){
     this.data = data
-
     this.templates.emptyAndAddNewTemplate($('section'), this.templates.map)
-    this.templates.emptyAndAddNewTemplate($('.menu'), this.templates.stationsMenu, data)
+    this.templates.emptyAndAddNewTemplate($('.menu'), this.templates.stationsMenu, this.data)
+    this.loadGoogleMaps()
 
     $('.stations li').on('click', e => this.storeDataToLocalStorage(e))
+  }
 
+  loadGoogleMaps(){
     loadGoogleMapsApi({key: this.apiKey})
       .then( googleMaps => {
-        this.map = this.createGoogleMap(googleMaps, data)
-        this.drawMarkersMap(data, this.map)
+        this.map = this.createGoogleMap(googleMaps, this.data)
+        this.drawMarkersMap(this.data, this.map)
       })
       .catch( err => console.error(err))
   }
@@ -54,7 +56,7 @@ class Maps{
           scale: 8.5,
           fillColor: markerColor,
           fillOpacity: 1,
-          strokeWeight: 1
+          strokeWeight: 0.1
         },
       })
     }
@@ -65,20 +67,29 @@ class Maps{
     const stationId = item.attr('data-id')
     let stationsStored = JSON.parse(localStorage.getItem('stationsId'))
 
-    item.toggleClass('checked')
-
-    if( stationsStored == null )
-      stationsStored = []
+    stationsStored = this.setDataFromLocalStorage(stationsStored)
 
     const stationIdExists = stationsStored.includes(stationId)
     if(!stationIdExists)
-      stationsStored.push(stationId)
+      this.addStationToStorage(stationsStored, stationId)
     else
-      stationsStored = stationsStored.filter(e => e != stationId)
+      stationsStored = this.deleteStationToStorage(stationsStored, stationId)
 
+    item.toggleClass('checked')
     localStorage.setItem('stationsId', JSON.stringify(stationsStored))
-    
     this.drawMarkersMap(this.data, this.map)
+  }
+
+  setDataFromLocalStorage(element){
+    return (element == null) ? [] : element
+  }
+
+  addStationToStorage(station, stationId){
+    station.push(stationId)
+  }
+
+  deleteStationToStorage(station, stationId){
+    return station.filter(e => e != stationId)
   }
 
 }
