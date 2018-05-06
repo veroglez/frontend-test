@@ -1,4 +1,6 @@
-let Maps = require('../map/script.js')
+const Maps = require('../map/script.js')
+const Menu = require('../menu/script.js')
+const Templates = require('../templates/script.js')
 
 class FrontGrid {
 
@@ -10,7 +12,8 @@ class FrontGrid {
 
   init(){
     this.map = new Maps()
-    this.templates = require('../templates/script.js')
+    this.menu = new Menu()
+    this.templates = new Templates()
     this.templateGrid = require('./templates/grid.hbs')
     this.templateMenu = require('../menu/templates/countries.hbs')
     this.createSession()
@@ -41,13 +44,13 @@ class FrontGrid {
     }
   }
 
-  filterCitiesByCountry(e){
+  handlerFilterCitiesByCountry(e){
     const country = $(e.currentTarget).find('p').text()
     const dataByCountries = this.filterObject(this.citiesNotRepeated, 'country_name', country)
 
     this.templates.emptyAndAddNewTemplate( $('section'), this.templateGrid, dataByCountries)
+    this.menu.openCloseMenu()
 
-    $('.menu').toggleClass('in')
     $('.item').on('click', (e) => { this.openMapForCity(e) })
   }
 
@@ -66,6 +69,7 @@ class FrontGrid {
       const countries = []
       const cities = []
       this.data = JSON.parse(res)
+      console.log(this.data);
 
       this.data.forEach( e => {
         this.pushIntoArray(e, countries, 'country_name', this.countriesNotRepeated)
@@ -76,7 +80,7 @@ class FrontGrid {
       $('section').append(this.templateGrid({data:this.citiesNotRepeated}))
       $('header nav').append(this.templateMenu({data:this.countriesNotRepeated}))
 
-      $('.menu li').on('click', (e) => { this.filterCitiesByCountry(e) })
+      $('.menu li').on('click', (e) => { this.handlerFilterCitiesByCountry(e) })
       $('.item').on('click', (e) => { this.openMapForCity(e) })
 
     })

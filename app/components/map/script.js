@@ -1,4 +1,5 @@
 const loadGoogleMapsApi = require('load-google-maps-api')
+const Templates = require('../templates/script.js')
 const env = require('../../env.js')
 
 class Maps{
@@ -8,7 +9,7 @@ class Maps{
     this.stationsChecked = []
     this.templateMap = require('./template.hbs')
     this.templateMenu = require('../menu/templates/stations.hbs')
-    this.templates = require('../templates/script.js')
+    this.templates = new Templates()
   }
 
   init(data){

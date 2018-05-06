@@ -5,13 +5,11 @@ class Menu {
   }
 
   init(){
-    this.openCloseMenu()
+    this.iconOpen.on('click', () => { this.openCloseMenu() })
   }
 
   openCloseMenu(){
-    this.iconOpen.on('click', () => {
-      $('.menu').toggleClass('in')
-    })
+    $('.menu').toggleClass('in')
   }
 }
 
