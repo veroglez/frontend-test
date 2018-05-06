@@ -1,12 +1,18 @@
-module.exports = {
+class Menu {
 
-  init: function(){
+  constructor(){
+    this.iconOpen = $('.open-menu')
+  }
+
+  init(){
     this.openCloseMenu()
-  },
+  }
 
-  openCloseMenu: function(){
-    $('.open-menu').on('click', () => {
+  openCloseMenu(){
+    this.iconOpen.on('click', () => {
       $('.menu').toggleClass('in')
     })
   }
 }
+
+module.exports = Menu

@@ -1,8 +1,11 @@
 var FrontGrid = require('./components/front_grid/script.js')
+var Menu = require('./components/menu/script.js')
 
 $( document ).ready(function() {
 
   const frontGrid = new FrontGrid()
+  const menu = new Menu()
+
   const page = [
     {
       id: 'nav',
@@ -10,7 +13,7 @@ $( document ).ready(function() {
     },
     {
       id: 'nav',
-      class: require('./components/menu/script.js')
+      class: menu
     }
   ]
 
