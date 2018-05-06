@@ -1,3 +1,4 @@
+const $ = require("jquery")
 const Maps = require('../map/script.js')
 const Menu = require('../menu/script.js')
 const Templates = require('../templates/script.js')

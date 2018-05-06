@@ -1,3 +1,4 @@
+const $ = require("jquery")
 const loadGoogleMapsApi = require('load-google-maps-api')
 const Templates = require('../templates/script.js')
 const env = require('../../env.js')
