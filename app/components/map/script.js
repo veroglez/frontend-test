@@ -7,11 +7,11 @@ class Maps{
   constructor(){
     this.apiKey = env.apiKey
     this.stationsChecked = []
-    this.templates = new Templates()
   }
 
   init(data){
     this.data = data
+    this.templates = new Templates()
     this.templates.emptyAndAddNewTemplate($('section'), this.templates.map)
     this.templates.emptyAndAddNewTemplate($('.menu'), this.templates.stationsMenu, this.data)
     this.loadGoogleMaps()
