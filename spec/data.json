@@ -1,0 +1,24 @@
+[
+  {
+    "id": "440",
+    "station_name": "Tranvía ",
+    "city_name": "Milan",
+    "country_name": "Italia",
+    "popularity": "327",
+    "address": "Via Marconi 1",
+    "picture_hashcode": "f86cf3d147771ca7000caa07bd2f9e9c",
+    "latitude": "45.463478",
+    "longitude": "9.190000"
+  },
+  {
+    "id": "490",
+    "station_name": "Estación de Atocha",
+    "city_name": "Madrid",
+    "country_name": "España",
+    "popularity": "1216",
+    "address": "Glorieta Del Emperador Carlos V",
+    "picture_hashcode": "48dd97adbec71fbac726f687eace9440",
+    "latitude": "40.407051",
+    "longitude": "-3.691350"
+  }
+]

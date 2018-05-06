@@ -4,7 +4,7 @@
   "description": "## Before you begin ### Purpose of the test The purpose of the test is to evaluate a candidate’s technical abilities.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "gulp-stylus": "^2.7.0",
     "handlebars": "^4.0.11",
     "hbsfy": "^2.8.1",
+    "jasmine": "^3.1.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },

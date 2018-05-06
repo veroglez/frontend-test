@@ -1,18 +1,17 @@
 describe("FrontGrid", () => {
   const FrontGrid = require('../app/components/front_grid/script')
-  let element
+  let frontGrid
 
   beforeEach( () => {
     frontGrid = new FrontGrid()
-    element = [
-      {city_name: 'Madrid', country_name: 'Spain'},
-      {city_name: 'Bagan', country_name: 'Myanmar'}
-    ]
-    })
-
+  })
 
   it("should filter an object according to a value of key", () => {
     const result = [{city_name: 'Madrid', country_name: 'Spain'}]
+    const element = [
+      {city_name: 'Madrid', country_name: 'Spain'},
+      {city_name: 'Bagan', country_name: 'Myanmar'}
+    ]
     expect(frontGrid.filterObject(element, 'country_name', 'Spain')).toEqual(result)
   })
 
@@ -38,5 +37,9 @@ describe("FrontGrid", () => {
     expect(element).toEqual(result)
   })
 
+  it('should request data from API', () => {
+    const promisedData = require('./data.json')
+    spyOn(frontGrid, 'requestApi').and.returnValue(Promise.resolve(promisedData))
+  })
 
 })
