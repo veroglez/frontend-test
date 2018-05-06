@@ -1,11 +1,7 @@
 module.exports = {
-  countries: [],
-  cities: [],
   citiesNotRepeated: [],
   countriesNotRepeated: [],
   data:{},
-  section: $('section'),
-  navMenu: $('header nav'),
   map: require('../map/script.js'),
   templates: require('../templates/script.js'),
   templateGrid: require('./templates/grid.hbs'),
@@ -41,10 +37,10 @@ module.exports = {
   },
 
   filterCitiesByCountry: function(e){
-    const country = $(e.target).find('p').text()
+    const country = $(e.currentTarget).find('p').text()
     const dataByCountries = this.filterObject(this.citiesNotRepeated, 'country_name', country)
 
-    this.templates.emptyAndAddNewTemplate(this.section, this.templateGrid, dataByCountries)
+    this.templates.emptyAndAddNewTemplate( $('section'), this.templateGrid, dataByCountries)
 
     $('.menu').toggleClass('in')
     $('.item').on('click', (e) => { this.openMapForCity(e) })
@@ -62,16 +58,18 @@ module.exports = {
       method: 'GET',
       url: 'https://gist.githubusercontent.com/inakivb/943ed6b3a8bcc667c1e1147b7591e32f/raw/355b2d67aaea30fd322c7d1e1a8660480609d67a/stations.json',
     }).then(res => {
+      const countries = []
+      const cities = []
       this.data = JSON.parse(res)
 
       this.data.forEach( e => {
-        this.pushIntoArray(e, this.countries, 'country_name', this.countriesNotRepeated)
-        this.pushIntoArray(e, this.cities, 'city_name', this.citiesNotRepeated)
+        this.pushIntoArray(e, countries, 'country_name', this.countriesNotRepeated)
+        this.pushIntoArray(e, cities, 'city_name', this.citiesNotRepeated)
         this.createUrlImage(e)
       })
 
-      this.section.append(this.templateGrid({data:this.citiesNotRepeated}))
-      this.navMenu.append(this.templateMenu({data:this.countriesNotRepeated}))
+      $('section').append(this.templateGrid({data:this.citiesNotRepeated}))
+      $('header nav').append(this.templateMenu({data:this.countriesNotRepeated}))
 
       $('.menu li').on('click', (e) => { this.filterCitiesByCountry(e) })
       $('.item').on('click', (e) => { this.openMapForCity(e) })

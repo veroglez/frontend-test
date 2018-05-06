@@ -33,24 +33,16 @@ module.exports = {
   },
 
   drawMarkersMap: function(data, map){
+    const stationList = $('.menu li')
     let stationsStored = JSON.parse(localStorage.getItem('stationsId'))
-    const list = $('.menu li')
 
-    list.each( (i, e) => {
-      e = $(e)
-      let stationId = e.attr('data-id')
-      
-      if(stationsStored && stationsStored.includes(stationId))
-        e.addClass('checked')
+    stationList.each( (i, e) => {
+      let stationId = $(e).attr('data-id')
+      stationsStored && stationsStored.includes(stationId) ? $(e).addClass('checked') : false
     })
 
-
     for (let e in data){
-      let markerColor = '#fff'
-
-      if(stationsStored && stationsStored.includes(data[e].id))
-        markerColor = '#d55b4e'
-
+      let markerColor = stationsStored && stationsStored.includes(data[e].id) ? '#d55b4e' : '#fff'
 
       new google.maps.Marker({
         position: {lat: Number(data[e].latitude), lng: Number(data[e].longitude)},
@@ -67,7 +59,6 @@ module.exports = {
   },
 
   storeDataToLocalStorage: function(e){
-    console.log('click');
     const item = $(e.currentTarget)
     const stationId = item.attr('data-id')
     let stationsStored = JSON.parse(localStorage.getItem('stationsId'))
