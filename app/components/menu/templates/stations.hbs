@@ -1,13 +1,13 @@
-<h2>Estaciones</h2>
+<h2>{{data.length}} Estaciones</h2>
 <ul class="stations">
   {{#each data}}
-  <li data-id="{{this.id}}">
-    <img src="{{this.image}}" alt="">
-    <div class="title">
-      <p>{{this.station_name}}</p>
-      <p class="city">{{this.city_name}}</p>
-    </div>
-    <i class="icons icons-like"></i>
-  </li>
+    <li data-id="{{this.id}}">
+      <img src="{{this.image}}" alt="">
+      <div class="title">
+        <p>{{this.station_name}}</p>
+        <p class="city">{{this.address}}</p>
+      </div>
+      <i class="icons icons-like"></i>
+    </li>
   {{/each}}
 </ul>

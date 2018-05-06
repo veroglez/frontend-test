@@ -58,6 +58,8 @@ class FrontGrid {
     const city = $(e.currentTarget).find('.title').text()
     const dataByCities = this.filterObject(this.data, 'city_name', city)
 
+    $('header').addClass('menu-map')
+
     this.map.init(dataByCities)
   }
 

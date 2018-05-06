@@ -7,7 +7,20 @@ header
   top 0
   left 0
   z-index 2
-  padding 16px
+  padding 16px 16px 0
+  margin-bottom 16px
+  background white
+
+  &.menu-map
+    background linear-gradient(white, transparent)
+
+    nav
+      ul.top-menu
+        justify-content flex-end
+
+        li
+          &:first-child
+            display none
 
   nav
     ul
