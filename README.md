@@ -92,7 +92,7 @@ First, you have to install npm packages used in the project. So, you have to run
 npm install
 ```
 
-You have to specify and Api Key of Google Maps in /app/env.js to run the maps.
+You have to specify an Api Key of Google Maps in /app/env.js to run the maps.
 
 
 ```
