@@ -4,7 +4,10 @@
     {{#each data}}
     <li>
       <img src="{{this.image}}" alt="">
-      <p>{{this.country_name}}</p>
+      <div class="title">
+        <p>{{this.country_name}}</p>
+        <p class="city">{{this.city_name}}</p>
+      </div>
     </li>
     {{/each}}
   </ul>

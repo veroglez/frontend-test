@@ -45,7 +45,7 @@ class FrontGrid {
   }
 
   handlerFilterCitiesByCountry(e){
-    const country = $(e.currentTarget).find('p').text()
+    const country = $(e.currentTarget).find('.title p:not(.city)').text()
     const dataByCountries = this.filterObject(this.citiesNotRepeated, 'country_name', country)
 
     this.templates.emptyAndAddNewTemplate( $('section'), this.templates.grid, dataByCountries)
