@@ -4,7 +4,8 @@
   "description": "## Before you begin ### Purpose of the test The purpose of the test is to evaluate a candidate’s technical abilities.",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "start": "gulp"
   },
   "repository": {
     "type": "git",

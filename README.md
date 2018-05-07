@@ -80,3 +80,39 @@ Given the image hashcode **88380e61d8cc9ba87a107bebe60fc6df** , to get a 183x90p
 
 ![image](https://imgs-akamai.mnstatic.com/88/38/88380e61d8cc9ba87a107bebe60fc6df.jpg?output-quality=75&output-format=progressive-jpeg&interpolation=lanczos-none&fit=around%7C183%3A90&crop=183%3A90%3B*%2C*
 )
+
+
+## How to run
+
+### Installing
+
+First, you have to install npm packages used in the project. So, you have to run the next command in the root of directory
+
+```
+npm install
+```
+
+You have to specify and Api Key of Google Maps in /app/env.js to run the maps.
+
+
+```
+module.exports = {
+  apiKey: ' '
+}
+```
+
+Now the app is ready to run with the command
+
+```
+npm start
+```
+
+This command runs gulp generating the files into the folder /dist/. To run the application you have to open /dist/index.html
+
+### Running the tests
+
+Several unit test have been done for this project. The tests are running under [Jasmine](https://jasmine.github.io/index.html) and you have to run the next command to execute them
+
+```
+npm test
+```
