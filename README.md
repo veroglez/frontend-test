@@ -97,7 +97,7 @@ You have to specify an Api Key of Google Maps in /app/env.js to run the maps.
 
 ```
 module.exports = {
-  apiKey: ' '
+  apiKey: 'AIz*************************A'
 }
 ```
 
@@ -107,7 +107,7 @@ Now the app is ready to run with the command
 npm start
 ```
 
-This command runs gulp generating the files into the folder /dist/. To run the application you have to open /dist/index.html
+This command runs [Gulp](https://gulpjs.com/) generating the files into the folder /dist/. To run the application you have to open /dist/index.html
 
 ### Running the tests
 
