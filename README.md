@@ -1,14 +1,5 @@
 # Minube Travel App
 
-
-## Before you begin
-## Requisites
-- It uses a CSS preprocessor
-- It has a templating system
-- It should be SEO-friendly
-- The design is responsive between 320px and 768px (it’s not necessary to appear correctly in desktop).
-- Take into account a stack for PHP
-
 ## Description
 At the International Train Lovers Association, we want to create a website that allows us to save the train stations we visit. The association's members haver compiled 1098 train stations around the world, and a software developer friend has created a small interface that allows us to search stations and indicate the ones we've visited with a heart symbol.
 
@@ -17,6 +8,13 @@ Given the sheer amount of stations, they are grouped by cities so that it they a
 Although our developer friend used Avenir font, us train lovers prefer Merriweather and we'd like you to use this font.
 
 Next, we'll explain how we'd like our website.
+
+### Requisites
+- It uses a CSS preprocessor
+- It has a templating system
+- It should be SEO-friendly
+- The design is responsive between 320px and 768px (it’s not necessary to appear correctly in desktop).
+- It takes into account a stack for PHP
 
 ### Mockups
 ![mockup](https://imgs-akamai.mnstatic.com/tools/tests/frontend/mockup.png)
@@ -35,10 +33,10 @@ Next, we'll explain how we'd like our website.
 - The user should be able to unmark a station.
 - If a station has been previously marked, it should appear marked in red when the user enters that city.
 
-## Url for API request for list of all stations:
+### Url for API request for list of all stations:
 ``https://gist.githubusercontent.com/inakivb/943ed6b3a8bcc667c1e1147b7591e32f/raw/355b2d67aaea30fd322c7d1e1a8660480609d67a/stations.json``
 
-## Graphic resources
+### Graphic resources
 ``https://www.dropbox.com/sh/b84svb4ewk7yufw/AACwE2CO7KYcUB3kAurM8w1Ha?dl=0``
 
 ### Structure of image URLs:
